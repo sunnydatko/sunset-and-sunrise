@@ -11,6 +11,8 @@ import Results from "./Results";
 import { makeStyles, Typography } from "@material-ui/core";
 import { LatitudeAndLongitude, Result } from "types/LatitudeAndLongitude";
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 const useStyles = makeStyles((theme) => ({
   container: {
     margin: "0px auto",
@@ -31,10 +33,8 @@ const Main = () => {
 
   useEffect(() => {
     const getData = async (location: LatitudeAndLongitude) => {
-      const token = process.env.IP_GEOLOCATION_AUTH_TOKEN;
-
       const response = await axios.get(
-        `https://api.ipgeolocation.io/astronomy?apiKey=${token}&lat=${location.latitude}&long=${location.longitude}`
+        `https://api.ipgeolocation.io/astronomy?apiKey=${API_KEY}&lat=${location.latitude}&long=${location.longitude}`
       );
 
       setResults((results: Result[]) => [
